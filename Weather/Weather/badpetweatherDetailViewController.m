@@ -16,6 +16,7 @@
 
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
+@synthesize receivedData = _receivedData;
 
 #pragma mark - Managing the detail item
 
@@ -34,8 +35,37 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+//        self.detailDescriptionLabel.text = [self.detailItem description];
+        self.detailDescriptionLabel.text = @"Loading data...";
+        self.detailDescriptionLabel.text = [@"api.openweathermap.org/data/2.5/find?q=" stringByAppendingString:[self.detailItem description]];
+        
+        NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/find?q=" stringByAppendingString:[self.detailItem description]]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        self.receivedData = [NSMutableData dataWithLength:4096];
+        NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.detailDescriptionLabel.text = @"response";
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    self.detailDescriptionLabel.text = [error localizedDescription];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.receivedData appendData:data];
+    self.detailDescriptionLabel.text = @"Got data";
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString *data =[[NSString alloc] initWithData:self.receivedData encoding:[NSString defaultCStringEncoding]];
+    self.detailDescriptionLabel.text = data;
 }
 
 - (void)viewDidLoad

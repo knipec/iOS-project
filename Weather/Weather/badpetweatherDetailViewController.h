@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface badpetweatherDetailViewController : UIViewController
-
+@interface badpetweatherDetailViewController : UIViewController <NSURLConnectionDelegate>
+{
+    NSMutableData *_receivedData;
+}
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+@property (strong, nonatomic) NSMutableData *receivedData;
 
 @end
