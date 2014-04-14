@@ -46,11 +46,6 @@
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    self.detailDescriptionLabel.text = @"response";
-}
-
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     self.detailDescriptionLabel.text = [error localizedDescription];
@@ -59,7 +54,6 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [self.receivedData appendData:data];
-    self.detailDescriptionLabel.text = @"Got data";
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
