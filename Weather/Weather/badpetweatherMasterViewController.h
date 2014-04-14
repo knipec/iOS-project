@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface badpetweatherMasterViewController : UITableViewController
+@interface badpetweatherMasterViewController : UITableViewController <UIAlertViewDelegate>
 
 @end
