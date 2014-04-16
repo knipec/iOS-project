@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4722490C18FF369800530BDF /* tardigrade.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4722490B18FF369800530BDF /* tardigrade.jpg */; };
+		4722490E18FF391A00530BDF /* polarBear.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4722490D18FF391A00530BDF /* polarBear.jpg */; };
 		4830028E18FC836B00B244ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4830028D18FC836B00B244ED /* UIKit.framework */; };
 		4830029018FC836B00B244ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4830028F18FC836B00B244ED /* Foundation.framework */; };
 		4830029218FC836B00B244ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4830029118FC836B00B244ED /* CoreGraphics.framework */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4722490B18FF369800530BDF /* tardigrade.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tardigrade.jpg; sourceTree = "<group>"; };
+		4722490D18FF391A00530BDF /* polarBear.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polarBear.jpg; sourceTree = "<group>"; };
 		4830028918FC836B00B244ED /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4830028D18FC836B00B244ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4830028F18FC836B00B244ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -129,6 +133,8 @@
 		4830029418FC836B00B244ED /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4722490D18FF391A00530BDF /* polarBear.jpg */,
+				4722490B18FF369800530BDF /* tardigrade.jpg */,
 				4830029518FC836B00B244ED /* Weather-Info.plist */,
 				4830029618FC836B00B244ED /* InfoPlist.strings */,
 				4830029918FC836B00B244ED /* main.m */,
@@ -227,6 +233,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4722490E18FF391A00530BDF /* polarBear.jpg in Resources */,
+				4722490C18FF369800530BDF /* tardigrade.jpg in Resources */,
 				4830029818FC836B00B244ED /* InfoPlist.strings in Resources */,
 				483002A118FC836B00B244ED /* MainStoryboard.storyboard in Resources */,
 			);
@@ -436,6 +444,7 @@
 				483002C118FC836B00B244ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		483002C218FC836B00B244ED /* Build configuration list for PBXNativeTarget "WeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +453,7 @@
 				483002C418FC836B00B244ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
