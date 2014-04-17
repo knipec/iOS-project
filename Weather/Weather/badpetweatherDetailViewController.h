@@ -10,12 +10,12 @@
 
 @interface badpetweatherDetailViewController : UIViewController <NSURLConnectionDelegate>
 {
-    NSMutableData *_receivedData;
+    NSData *_receivedData;
 }
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
-@property (strong, nonatomic) NSMutableData *receivedData;
+@property (strong, nonatomic) NSData *receivedData;
 
 @end

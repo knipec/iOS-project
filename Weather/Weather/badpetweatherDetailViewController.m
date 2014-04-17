@@ -7,6 +7,7 @@
 //
 
 #import "badpetweatherDetailViewController.h"
+#import "badpetweatherWeatherData.h"
 
 @interface badpetweatherDetailViewController ()
 - (void)configureView;
@@ -37,11 +38,10 @@
     if (self.detailItem) {
 //        self.detailDescriptionLabel.text = [self.detailItem description];
         self.detailDescriptionLabel.text = @"Loading data...";
-        self.detailDescriptionLabel.text = [@"api.openweathermap.org/data/2.5/find?q=" stringByAppendingString:[self.detailItem description]];
+        self.detailDescriptionLabel.text = [@"api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]];
         
-        NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/find?q=" stringByAppendingString:[self.detailItem description]]];
+        NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        self.receivedData = [NSMutableData dataWithLength:4096];
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     }
 }
@@ -53,13 +53,23 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    [self.receivedData appendData:data];
+    self.receivedData = data;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSString *data =[[NSString alloc] initWithData:self.receivedData encoding:[NSString defaultCStringEncoding]];
-    self.detailDescriptionLabel.text = data;
+    NSString *stringData = [[NSString alloc] initWithData:self.receivedData encoding: [NSString defaultCStringEncoding]];
+    NSError *jsonParseError = nil;
+    NSDictionary *weatherData = [NSJSONSerialization JSONObjectWithData:self.receivedData options:0 error:&jsonParseError];
+    badpetweatherWeatherData *weatherObject = [[badpetweatherWeatherData alloc] init];
+    weatherObject.name = [weatherData objectForKey: @"name"];
+    NSDictionary *mainData =[weatherData objectForKey:@"main"];
+    weatherObject.temperature = [[mainData objectForKey:@"temp"] floatValue];
+    weatherObject.high = [[mainData objectForKey:@"temp_max"] floatValue];
+    weatherObject.low = [[mainData objectForKey:@"temp_min"] floatValue];
+    weatherObject.windspeed = [[[weatherData objectForKey:@"wind"] objectForKey:@"speed"] floatValue];
+    weatherObject.rain = [[[weatherData objectForKey:@"rain"] objectForKey:@"3h"] floatValue];
+    weatherObject.snow = [[[weatherData objectForKey:@"snow"] objectForKey:@"3h"] floatValue];
 }
 
 - (void)viewDidLoad

@@ -21,6 +21,7 @@
 		483002B118FC836B00B244ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4830028F18FC836B00B244ED /* Foundation.framework */; };
 		483002B918FC836B00B244ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 483002B718FC836B00B244ED /* InfoPlist.strings */; };
 		483002BC18FC836B00B244ED /* WeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 483002BB18FC836B00B244ED /* WeatherTests.m */; };
+		4CEC6B8B18FF3BB9008D1155 /* badpetweatherWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC6B8A18FF3BB9008D1155 /* badpetweatherWeatherData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		483002B818FC836B00B244ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		483002BA18FC836B00B244ED /* WeatherTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherTests.h; sourceTree = "<group>"; };
 		483002BB18FC836B00B244ED /* WeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherTests.m; sourceTree = "<group>"; };
+		4CEC6B8918FF3BB9008D1155 /* badpetweatherWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = badpetweatherWeatherData.h; sourceTree = "<group>"; };
+		4CEC6B8A18FF3BB9008D1155 /* badpetweatherWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badpetweatherWeatherData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				483002A518FC836B00B244ED /* badpetweatherDetailViewController.h */,
 				483002A618FC836B00B244ED /* badpetweatherDetailViewController.m */,
 				4830029418FC836B00B244ED /* Supporting Files */,
+				4CEC6B8918FF3BB9008D1155 /* badpetweatherWeatherData.h */,
+				4CEC6B8A18FF3BB9008D1155 /* badpetweatherWeatherData.m */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CEC6B8B18FF3BB9008D1155 /* badpetweatherWeatherData.m in Sources */,
 				4830029A18FC836B00B244ED /* main.m in Sources */,
 				4830029E18FC836B00B244ED /* badpetweatherAppDelegate.m in Sources */,
 				483002A418FC836B00B244ED /* badpetweatherMasterViewController.m in Sources */,
@@ -436,6 +442,7 @@
 				483002C118FC836B00B244ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		483002C218FC836B00B244ED /* Build configuration list for PBXNativeTarget "WeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +451,7 @@
 				483002C418FC836B00B244ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
