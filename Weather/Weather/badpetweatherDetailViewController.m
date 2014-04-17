@@ -18,6 +18,7 @@
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize receivedData = _receivedData;
+@synthesize imageView = _imageView;
 
 #pragma mark - Managing the detail item
 
@@ -36,14 +37,32 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-//        self.detailDescriptionLabel.text = [self.detailItem description];
+        // Get weather data
         self.detailDescriptionLabel.text = @"Loading data...";
         self.detailDescriptionLabel.text = [@"api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]];
         
         NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+        
+        
+        self.navigationItem.title = self.detailItem;
+        [self setImage];
     }
+}
+
+- (void)setImage
+{
+    UIImage *image;
+
+    // Change these...
+    if ([self.detailItem isEqualToString:@"Antarctica"]) {
+        image = [UIImage imageNamed:@"polarBear.jpg"];
+    }
+    else {
+        image = [UIImage imageNamed:@"tardigrade.jpg"];
+    }
+    [self.imageView setImage:image];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

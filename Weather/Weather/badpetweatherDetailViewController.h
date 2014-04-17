@@ -18,4 +18,6 @@
 
 @property (strong, nonatomic) NSData *receivedData;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @end
