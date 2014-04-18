@@ -39,16 +39,23 @@
     if (self.detailItem) {
         // Get weather data
         self.detailDescriptionLabel.text = @"Loading data...";
-        self.detailDescriptionLabel.text = [@"api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]];
         
-        NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]]];
+        NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self urlEncodeString:self.detailItem.locationName]]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
         
         
-        self.navigationItem.title = self.detailItem;
+        self.navigationItem.title = self.detailItem.locationName;
         [self setImage];
     }
+}
+
+// Code taken from http://stackoverflow.com/questions/8086584/objective-c-url-encoding
+- (NSString *)urlEncodeString:(NSString *)string
+{
+    NSString *charactersToEscape = @"!*'();:@&=+$,/?%#[]\" ";
+    NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
 }
 
 - (void)setImage
@@ -56,7 +63,7 @@
     UIImage *image;
 
     // Change these...
-    if ([self.detailItem isEqualToString:@"Antarctica"]) {
+    if ([self.detailItem.locationName isEqualToString:@"Antarctica"]) {
         image = [UIImage imageNamed:@"polarBear.jpg"];
     }
     else {
@@ -77,7 +84,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSString *stringData = [[NSString alloc] initWithData:self.receivedData encoding: [NSString defaultCStringEncoding]];
     NSError *jsonParseError = nil;
     NSDictionary *weatherData = [NSJSONSerialization JSONObjectWithData:self.receivedData options:0 error:&jsonParseError];
     badpetweatherWeatherData *weatherObject = [[badpetweatherWeatherData alloc] init];

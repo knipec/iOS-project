@@ -9,6 +9,7 @@
 #import "badpetweatherMasterViewController.h"
 
 #import "badpetweatherDetailViewController.h"
+#import "badpetweatherLocation.h"
 
 @interface badpetweatherMasterViewController () {
     NSMutableArray *_objects;
@@ -68,7 +69,7 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:location atIndex:0];
+    [_objects insertObject:[[badpetweatherLocation alloc] initWithLocationName:location] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -89,8 +90,8 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
-    NSDate *object = [_objects objectAtIndex:indexPath.row];
-    cell.textLabel.text = [object description];
+    badpetweatherLocation *object = [_objects objectAtIndex:indexPath.row];
+    cell.textLabel.text = object.locationName;
     return cell;
 }
 
@@ -130,7 +131,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = [_objects objectAtIndex:indexPath.row];
+        badpetweatherLocation *object = [_objects objectAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
