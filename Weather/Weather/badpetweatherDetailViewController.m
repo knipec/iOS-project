@@ -87,8 +87,8 @@
     weatherObject.high = [[mainData objectForKey:@"temp_max"] floatValue];
     weatherObject.low = [[mainData objectForKey:@"temp_min"] floatValue];
     weatherObject.windspeed = [[[weatherData objectForKey:@"wind"] objectForKey:@"speed"] floatValue];
-    weatherObject.rain = [[[weatherData objectForKey:@"rain"] objectForKey:@"3h"] floatValue];
-    weatherObject.snow = [[[weatherData objectForKey:@"snow"] objectForKey:@"3h"] floatValue];
+    weatherObject.rain = [[[weatherData objectForKey:@"rain"] objectForKey:@"1h"] floatValue];
+    weatherObject.snow = [[[weatherData objectForKey:@"snow"] objectForKey:@"1h"] floatValue];
 }
 
 - (void)viewDidLoad
