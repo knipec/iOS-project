@@ -47,6 +47,19 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)setArray:(NSMutableArray *)array
+{
+    _objects = array;
+    for (int i = [_objects count]-1; i>=0; --i) {
+        [self addLocationToArray:[_objects objectAtIndex:i]];
+    }
+}
+
+- (NSMutableArray *)getArray
+{
+    return _objects;
+}
+
 - (void)insertNewObject:(id)sender
 {
     
@@ -55,7 +68,7 @@
     [alert show];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if([buttonTitle isEqualToString:@"Add"])
@@ -64,12 +77,17 @@
     }
 }
 
--(void)addLocation:(NSString *)location
+- (void)addLocation:(NSString *)location
 {
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
     [_objects insertObject:[[badpetweatherLocation alloc] initWithLocationName:location] atIndex:0];
+    [self addLocationToArray:location];
+}
+
+- (void)addLocationToArray:(NSString *)location
+{
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
