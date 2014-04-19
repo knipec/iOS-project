@@ -26,6 +26,8 @@ static const int F = 0;
 static const int C = 1;
 static const int K = 2;
 
+int tempUnits = 0;
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -113,7 +115,7 @@ static const int K = 2;
 - (void)setWeatherText:(badpetweatherWeatherData *)weatherObject
 {
     NSMutableString *weatherText = [NSMutableString string];
-    NSString *tempText = [self getTemp:weatherObject.temperature toUnits:F];
+    NSString *tempText = [self getTemp:weatherObject.temperature toUnits:tempUnits];
     [weatherText appendString:tempText];
     self.weatherLabel.text = weatherText;
 }
@@ -121,17 +123,23 @@ static const int K = 2;
 - (NSString *)getTemp:(float)tempInKelvin toUnits:(int)units
 {
     float temperature;
+    NSMutableString *tempString;
     if (units == F) {
         temperature = (9.0 / 5) * (tempInKelvin - 273) + 32;
+        tempString = [NSMutableString stringWithFormat:@"%0.1f", temperature];
+        [tempString appendString:@" \u00B0F"];
     }
     else if (units == C) {
         temperature = tempInKelvin - 273.15;
+        tempString = [NSMutableString stringWithFormat:@"%0.1f", temperature];
+        [tempString appendString:@" \u00B0C"];
     }
     else {
         temperature = tempInKelvin;
+        tempString = [NSMutableString stringWithFormat:@"%0.1f", temperature];
+        [tempString appendString:@" K"];
     }
-    NSMutableString *tempString = [NSMutableString stringWithFormat:@"%0.2f", temperature];
-    [tempString appendString:@"\u00B0"];
+    
     return [NSString stringWithString:tempString];
 }
 
@@ -161,7 +169,8 @@ static const int K = 2;
     // Millimeters per 3 hours
     weatherObject.rain = [[[weatherData objectForKey:@"rain"] objectForKey:@"3h"] floatValue];
     weatherObject.snow = [[[weatherData objectForKey:@"snow"] objectForKey:@"3h"] floatValue];
-    
+    // set it to the detail item's last data property
+    self.detailItem.lastData = weatherObject;
     [self setWeatherText:weatherObject];
     [self setImage:weatherObject];
 }
@@ -185,4 +194,12 @@ static const int K = 2;
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (IBAction)tempUnitChanged:(id)sender
+{
+    UISegmentedControl *unitControl = sender;
+    tempUnits = [unitControl selectedSegmentIndex];
+    badpetweatherWeatherData *weatherObject = self.detailItem.lastData;
+    [self setWeatherText:weatherObject];
+    
+}
 @end
