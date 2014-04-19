@@ -26,7 +26,7 @@ static const int F = 0;
 static const int C = 1;
 static const int K = 2;
 
-int tempUnits = 0;
+int tempUnits = F;
 
 #pragma mark - Managing the detail item
 
@@ -46,8 +46,7 @@ int tempUnits = 0;
 
     if (self.detailItem) {
         // Get weather data
-        self.weatherLabel.text = @"Loading data...";
-        self.weatherLabel.text = [@"api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]];
+        self.weatherLabel.text = @"Loading...";
         
         NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self urlEncodeString:self.detailItem.locationName]]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -93,15 +92,53 @@ int tempUnits = 0;
         animal = @"A PUPPY";
         rationale = @"always puppies";
     }
-    else if (weatherObject.temperature > 302) {
+    else if (weatherObject.temperature >= 302) {
         image = [UIImage imageNamed:@"camel.jpg"];
         animal = @"A CAMEL";
-        rationale = @"it's so hot you're probably in the desert";
+        rationale = @"it's so hot you're basically in the desert";
+        self.suggestionLabel.textColor = [UIColor blackColor];
     }
     self.imageView.image = image;
     self.animalLabel.text = animal;
     self.animalLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.rationaleLabel.text = rationale;
+}
+
+- (void)setWeatherText:(badpetweatherWeatherData *)weatherObject
+{
+    NSMutableString *weatherText = [NSMutableString string];
+    NSString *tempText = [self getTemp:weatherObject.temperature toUnits:tempUnits];
+    [weatherText appendString:tempText];
+    self.weatherLabel.text = weatherText;
+    self.highLabel.text = [self getTemp:weatherObject.high toUnits:tempUnits];
+    self.lowLabel.text = [self getTemp:weatherObject.low toUnits:tempUnits];
+    self.windLabel.text = [NSString stringWithFormat:@"%0.1f %@", weatherObject.windspeed, @"m/s"];
+    float rain = weatherObject.rain;
+    float snow = weatherObject.snow;
+    if (rain > 0 && snow > 0)
+    {
+        self.precipLabel.text = @"Wintry Mix?";
+        self.precipLabel2.text = [NSString stringWithFormat:@"%0.1f %@", (rain+snow), @"mm/hour"];
+    }
+    else if (rain > 0 && snow >= 0)
+    {
+        self.precipLabel.text = @"Rain";
+        self.precipLabel2.text = [NSString stringWithFormat:@"%0.1f %@", rain, @"mm/hour"];
+    }
+    else if (rain <= 0 && (snow > 0))
+    {
+        self.precipLabel.text = @"Snow";
+        self.precipLabel2.text = [NSString stringWithFormat:@"%0.1f %@", snow, @"mm/hour"];
+    }
+    else
+    {
+        self.precipLabel.text = @"Nothing";
+        self.precipLabel2.text = @"is falling from the sky";
+        [self.precipLabel2 setFont:[UIFont systemFontOfSize:14]];
+    }
+    
+
+    
 }
 
 // Code taken from http://stackoverflow.com/questions/8086584/objective-c-url-encoding
@@ -112,13 +149,6 @@ int tempUnits = 0;
     return [string stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
 }
 
-- (void)setWeatherText:(badpetweatherWeatherData *)weatherObject
-{
-    NSMutableString *weatherText = [NSMutableString string];
-    NSString *tempText = [self getTemp:weatherObject.temperature toUnits:tempUnits];
-    [weatherText appendString:tempText];
-    self.weatherLabel.text = weatherText;
-}
 
 - (NSString *)getTemp:(float)tempInKelvin toUnits:(int)units
 {
@@ -166,7 +196,7 @@ int tempUnits = 0;
     weatherObject.low = [[mainData objectForKey:@"temp_min"] floatValue];
     // Meters/Sec
     weatherObject.windspeed = [[[weatherData objectForKey:@"wind"] objectForKey:@"speed"] floatValue];
-    // Millimeters per 3 hours
+    // Millimeters per hour
     weatherObject.rain = [[[weatherData objectForKey:@"rain"] objectForKey:@"3h"] floatValue];
     weatherObject.snow = [[[weatherData objectForKey:@"snow"] objectForKey:@"3h"] floatValue];
     // set it to the detail item's last data property
@@ -196,8 +226,7 @@ int tempUnits = 0;
 
 - (IBAction)tempUnitChanged:(id)sender
 {
-    UISegmentedControl *unitControl = sender;
-    tempUnits = [unitControl selectedSegmentIndex];
+    tempUnits = [_TempUnitControl selectedSegmentIndex];
     badpetweatherWeatherData *weatherObject = self.detailItem.lastData;
     [self setWeatherText:weatherObject];
     

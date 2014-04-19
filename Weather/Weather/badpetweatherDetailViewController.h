@@ -21,11 +21,19 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *suggestionLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *animalLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *rationaleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *highLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lowLabel;
+@property (weak, nonatomic) IBOutlet UILabel *windLabel;
+@property (weak, nonatomic) IBOutlet UILabel *precipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *precipLabel2;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *TempUnitControl;
 
