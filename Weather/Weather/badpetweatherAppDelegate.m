@@ -8,6 +8,7 @@
 
 #import "badpetweatherAppDelegate.h"
 #import "badpetweatherMasterViewController.h"
+#import "badpetweatherDetailViewController.h"
 #import "badpetweatherLocation.h"
 
 @implementation badpetweatherAppDelegate
@@ -53,6 +54,8 @@
 - (void)loadFromPreferences
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    //Restore the location array
     NSArray *serializedLocations = [prefs objectForKey:@"locations"];
     if (serializedLocations != nil)
     {
@@ -64,9 +67,19 @@
         
         UINavigationController *navController = self.window.rootViewController;
         NSArray *childControllers = [navController viewControllers];
-        badpetweatherMasterViewController *masterController = [childControllers objectAtIndex:0];
+        badpetweatherMasterViewController *masterController = [childControllers firstObject];
         
         [masterController setArray:newBackingArray];
+        
+        //Restores the screen, if any
+        NSInteger *currentIndex = [[prefs objectForKey:@"currentlocation"] intValue];
+        if (currentIndex != nil)
+        {
+            badpetweatherLocation *currentLocation = [newBackingArray objectAtIndex:currentIndex];
+            badpetweatherDetailViewController *newCurrentVC = [navController.storyboard instantiateViewControllerWithIdentifier:@"detailVC" ];
+            [newCurrentVC setDetailItem:currentLocation];
+            [navController pushViewController:newCurrentVC animated:FALSE];
+        }
     }
 }
 
@@ -78,6 +91,7 @@
     NSArray *childControllers = [navController viewControllers];
     badpetweatherMasterViewController *masterController = [childControllers objectAtIndex:0];
     
+    //Save the location array
     NSArray *backingArray = [masterController getArray];
     NSMutableArray *serializableArray = [[NSMutableArray alloc] init];
     for (int i = 0; i<[backingArray count]; ++i)
@@ -85,6 +99,16 @@
         [serializableArray addObject:[[backingArray objectAtIndex:i] getDictionaryEquivalent]];
     }
     [prefs setObject:serializableArray forKey:@"locations"];
+    
+    //Save current screen
+    UIViewController *currentView = [childControllers lastObject];
+    if ([currentView isKindOfClass:[badpetweatherDetailViewController class]])
+    {
+        badpetweatherLocation *currentLocation = ((badpetweatherDetailViewController*)currentView).detailItem;
+        NSInteger *currentIndex = [backingArray indexOfObject:currentLocation];
+        [prefs setObject:[NSNumber numberWithInt:currentIndex] forKey:@"currentlocation"];
+    }
+    
 }
 
 @end

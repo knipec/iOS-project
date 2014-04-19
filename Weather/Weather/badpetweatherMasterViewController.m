@@ -49,9 +49,23 @@
 
 - (void)setArray:(NSMutableArray *)array
 {
-    _objects = array;
-    for (int i = [_objects count]-1; i>=0; --i) {
-        [self addLocationToArray:[_objects objectAtIndex:i]];
+    if (_objects != nil && [_objects count] > 0)
+    {
+        while ([_objects count] > 0)
+        {
+            //We add from the end so it makes no visible changes
+            [_objects removeObjectAtIndex:[_objects count]-1];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[[NSIndexPath indexPathWithIndex:0] indexPathByAddingIndex:[_objects count]]] withRowAnimation:UITableViewRowAnimationNone];
+        }
+    }
+    if (_objects == nil)
+    {
+        _objects = [[NSMutableArray alloc] init];
+    }
+    for (int i = 0; i< [array count]; ++i)
+    {
+        [_objects addObject:[array objectAtIndex:i]];
+        [self addLocationToTableWithoutAnimation:i];
     }
 }
 
@@ -83,13 +97,19 @@
         _objects = [[NSMutableArray alloc] init];
     }
     [_objects insertObject:[[badpetweatherLocation alloc] initWithLocationName:location] atIndex:0];
-    [self addLocationToArray:location];
+    [self addTopLocationToTable];
 }
 
-- (void)addLocationToArray:(NSString *)location
+- (void)addTopLocationToTable
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(void)addLocationToTableWithoutAnimation:(NSInteger)index
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table View
