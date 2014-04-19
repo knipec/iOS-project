@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "badpetweatherLocation.h"
 
 @interface badpetweatherDetailViewController : UIViewController <NSURLConnectionDelegate>
 {
     NSData *_receivedData;
 }
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) badpetweatherLocation *detailItem;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 

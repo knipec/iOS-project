@@ -47,12 +47,11 @@ static const int K = 2;
         self.weatherLabel.text = @"Loading data...";
         self.weatherLabel.text = [@"api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]];
         
-        NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self.detailItem description]]];
+        NSURL *url = [[NSURL alloc] initWithString:[@"http://api.openweathermap.org/data/2.5/weather?q=" stringByAppendingString:[self urlEncodeString:self.detailItem.locationName]]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
-        
-        
-        self.navigationItem.title = self.detailItem;
+  
+        self.navigationItem.title = self.detailItem.locationName;
     }
 }
 
@@ -101,6 +100,14 @@ static const int K = 2;
     self.animalLabel.text = animal;
     self.animalLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.rationaleLabel.text = rationale;
+}
+
+// Code taken from http://stackoverflow.com/questions/8086584/objective-c-url-encoding
+- (NSString *)urlEncodeString:(NSString *)string
+{
+    NSString *charactersToEscape = @"!*'();:@&=+$,/?%#[]\" ";
+    NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
 }
 
 - (void)setWeatherText:(badpetweatherWeatherData *)weatherObject

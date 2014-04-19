@@ -27,6 +27,7 @@
 		483002B918FC836B00B244ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 483002B718FC836B00B244ED /* InfoPlist.strings */; };
 		483002BC18FC836B00B244ED /* WeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 483002BB18FC836B00B244ED /* WeatherTests.m */; };
 		4CEC6B8B18FF3BB9008D1155 /* badpetweatherWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC6B8A18FF3BB9008D1155 /* badpetweatherWeatherData.m */; };
+		4CF316C91901BD0B000AE18D /* badpetweatherLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF316C81901BD0B000AE18D /* badpetweatherLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		483002BB18FC836B00B244ED /* WeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherTests.m; sourceTree = "<group>"; };
 		4CEC6B8918FF3BB9008D1155 /* badpetweatherWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = badpetweatherWeatherData.h; sourceTree = "<group>"; };
 		4CEC6B8A18FF3BB9008D1155 /* badpetweatherWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badpetweatherWeatherData.m; sourceTree = "<group>"; };
+		4CF316C71901BD0B000AE18D /* badpetweatherLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = badpetweatherLocation.h; sourceTree = "<group>"; };
+		4CF316C81901BD0B000AE18D /* badpetweatherLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badpetweatherLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				4830029418FC836B00B244ED /* Supporting Files */,
 				4CEC6B8918FF3BB9008D1155 /* badpetweatherWeatherData.h */,
 				4CEC6B8A18FF3BB9008D1155 /* badpetweatherWeatherData.m */,
+				4CF316C71901BD0B000AE18D /* badpetweatherLocation.h */,
+				4CF316C81901BD0B000AE18D /* badpetweatherLocation.m */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				4830029E18FC836B00B244ED /* badpetweatherAppDelegate.m in Sources */,
 				483002A418FC836B00B244ED /* badpetweatherMasterViewController.m in Sources */,
 				483002A718FC836B00B244ED /* badpetweatherDetailViewController.m in Sources */,
+				4CF316C91901BD0B000AE18D /* badpetweatherLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
