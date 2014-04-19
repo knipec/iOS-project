@@ -10,4 +10,8 @@
 
 @interface badpetweatherMasterViewController : UITableViewController <UIAlertViewDelegate>
 
+- (void)setArray:(NSMutableArray *)array;
+
+- (NSMutableArray *)getArray;
+
 @end

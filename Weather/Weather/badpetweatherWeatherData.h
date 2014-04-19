@@ -24,4 +24,8 @@
 
 @property float snow;
 
+- (id)initFromDictionary:(NSDictionary *)dictionary;
+
+- (NSDictionary*)getDictionaryEquivalent;
+
 @end

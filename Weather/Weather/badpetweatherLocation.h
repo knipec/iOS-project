@@ -17,4 +17,8 @@
 
 - (id)initWithLocationName:(NSString *)locationName;
 
+- (id)initFromDictionary:(NSDictionary *)dictionary;
+
+- (NSDictionary*)getDictionaryEquivalent;
+
 @end
