@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4722490C18FF369800530BDF /* tardigrade.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4722490B18FF369800530BDF /* tardigrade.jpg */; };
 		4722490E18FF391A00530BDF /* polarBear.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4722490D18FF391A00530BDF /* polarBear.jpg */; };
+		472249121901C6AC00530BDF /* manatee.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 472249101901C6AC00530BDF /* manatee.JPG */; };
+		472249141901C96400530BDF /* puppies.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 472249131901C96400530BDF /* puppies.jpg */; };
+		472249161901CBE800530BDF /* camel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 472249151901CBE800530BDF /* camel.jpg */; };
 		4830028E18FC836B00B244ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4830028D18FC836B00B244ED /* UIKit.framework */; };
 		4830029018FC836B00B244ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4830028F18FC836B00B244ED /* Foundation.framework */; };
 		4830029218FC836B00B244ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4830029118FC836B00B244ED /* CoreGraphics.framework */; };
@@ -40,6 +43,9 @@
 /* Begin PBXFileReference section */
 		4722490B18FF369800530BDF /* tardigrade.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tardigrade.jpg; sourceTree = "<group>"; };
 		4722490D18FF391A00530BDF /* polarBear.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polarBear.jpg; sourceTree = "<group>"; };
+		472249101901C6AC00530BDF /* manatee.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = manatee.JPG; sourceTree = "<group>"; };
+		472249131901C96400530BDF /* puppies.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puppies.jpg; sourceTree = "<group>"; };
+		472249151901CBE800530BDF /* camel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = camel.jpg; sourceTree = "<group>"; };
 		4830028918FC836B00B244ED /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4830028D18FC836B00B244ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4830028F18FC836B00B244ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,6 +149,9 @@
 		4830029418FC836B00B244ED /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				472249151901CBE800530BDF /* camel.jpg */,
+				472249131901C96400530BDF /* puppies.jpg */,
+				472249101901C6AC00530BDF /* manatee.JPG */,
 				4722490D18FF391A00530BDF /* polarBear.jpg */,
 				4722490B18FF369800530BDF /* tardigrade.jpg */,
 				4830029518FC836B00B244ED /* Weather-Info.plist */,
@@ -244,6 +253,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4722490E18FF391A00530BDF /* polarBear.jpg in Resources */,
+				472249161901CBE800530BDF /* camel.jpg in Resources */,
+				472249121901C6AC00530BDF /* manatee.JPG in Resources */,
+				472249141901C96400530BDF /* puppies.jpg in Resources */,
 				4722490C18FF369800530BDF /* tardigrade.jpg in Resources */,
 				4830029818FC836B00B244ED /* InfoPlist.strings in Resources */,
 				483002A118FC836B00B244ED /* MainStoryboard.storyboard in Resources */,
