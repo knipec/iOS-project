@@ -29,4 +29,6 @@
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *TempUnitControl;
 
+- (IBAction)tempUnitChanged:(id)sender;
+
 @end

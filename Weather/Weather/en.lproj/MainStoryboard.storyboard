@@ -121,6 +121,9 @@
                                     <segment title="C"/>
                                     <segment title="K"/>
                                 </segments>
+                                <connections>
+                                    <action selector="tempUnitChanged:" destination="21" eventType="valueChanged" id="7aU-K5-D5z"/>
+                                </connections>
                             </segmentedControl>
                         </barButtonItem>
                     </navigationItem>
