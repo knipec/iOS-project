@@ -26,8 +26,6 @@ static const int F = 0;
 static const int C = 1;
 static const int K = 2;
 
-int tempUnits = F;
-
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -53,6 +51,7 @@ int tempUnits = F;
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
   
         self.navigationItem.title = self.detailItem.locationName;
+        self.TempUnitControl.selectedSegmentIndex = self.detailItem.temperatureUnits;
     }
 }
 
@@ -104,14 +103,14 @@ int tempUnits = F;
     self.rationaleLabel.text = rationale;
 }
 
-- (void)setWeatherText:(badpetweatherWeatherData *)weatherObject
+- (void)setWeatherText:(badpetweatherWeatherData *)weatherObject withUnits:(int)units
 {
     NSMutableString *weatherText = [NSMutableString string];
-    NSString *tempText = [self getTemp:weatherObject.temperature toUnits:tempUnits];
+    NSString *tempText = [self getTemp:weatherObject.temperature toUnits:units];
     [weatherText appendString:tempText];
     self.weatherLabel.text = weatherText;
-    self.highLabel.text = [self getTemp:weatherObject.high toUnits:tempUnits];
-    self.lowLabel.text = [self getTemp:weatherObject.low toUnits:tempUnits];
+    self.highLabel.text = [self getTemp:weatherObject.high toUnits:units];
+    self.lowLabel.text = [self getTemp:weatherObject.low toUnits:units];
     self.windLabel.text = [NSString stringWithFormat:@"%0.1f %@", weatherObject.windspeed, @"m/s"];
     float rain = weatherObject.rain;
     float snow = weatherObject.snow;
@@ -201,7 +200,7 @@ int tempUnits = F;
     weatherObject.snow = [[[weatherData objectForKey:@"snow"] objectForKey:@"3h"] floatValue];
     // set it to the detail item's last data property
     self.detailItem.lastData = weatherObject;
-    [self setWeatherText:weatherObject];
+    [self setWeatherText:weatherObject withUnits:_detailItem.temperatureUnits];
     [self setImage:weatherObject];
 }
 
@@ -226,9 +225,9 @@ int tempUnits = F;
 
 - (IBAction)tempUnitChanged:(id)sender
 {
-    tempUnits = [_TempUnitControl selectedSegmentIndex];
+    _detailItem.temperatureUnits = [_TempUnitControl selectedSegmentIndex];
     badpetweatherWeatherData *weatherObject = self.detailItem.lastData;
-    [self setWeatherText:weatherObject];
+    [self setWeatherText:weatherObject withUnits:_detailItem.temperatureUnits];
     
 }
 @end

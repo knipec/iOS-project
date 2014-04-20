@@ -15,6 +15,8 @@
 
 @property badpetweatherWeatherData *lastData;
 
+@property int temperatureUnits;
+
 - (id)initWithLocationName:(NSString *)locationName;
 
 - (id)initFromDictionary:(NSDictionary *)dictionary;
