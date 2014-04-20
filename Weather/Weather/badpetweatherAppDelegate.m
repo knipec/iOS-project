@@ -108,6 +108,10 @@
         NSInteger *currentIndex = [backingArray indexOfObject:currentLocation];
         [prefs setObject:[NSNumber numberWithInt:currentIndex] forKey:@"currentlocation"];
     }
+    else
+    {
+        [prefs removeObjectForKey:@"currentlocation"];
+    }
     
 }
 
