@@ -72,14 +72,16 @@ static const int K = 2;
         rationale = @"because it's goddamn snowy";
     }
     else if (weatherObject.temperature < 1) {
+        _imageLabel.text = @"Are you sure this place is real?";
         // This should never happen
-        animal = @"NO PETS ALSO YOU ARE VERY DEAD";
+        animal = @"NO PETS ALSO YOU ARE DEAD";
         rationale = @"so dead";
+        [self.animalLabel setFont:[UIFont systemFontOfSize:21]];
     }
     else if (weatherObject.temperature < 70 || weatherObject.temperature > 340) {
         image = [UIImage imageNamed:@"tardigrade.jpg"];
-        animal = @"A TARDIGRADE. YOU'LL BE DEAD THOUGH";
-        rationale = @"how did this happen";
+        animal = @"A TARDIGRADE";
+        rationale = @"you'll be dead though";
     }
     else if (weatherObject.temperature < 256) {
         image = [UIImage imageNamed:@"polarBear.jpg"];

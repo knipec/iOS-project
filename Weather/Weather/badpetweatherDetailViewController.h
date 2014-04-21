@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSData *receivedData;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *imageLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *suggestionLabel;
 
@@ -34,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *windLabel;
 @property (weak, nonatomic) IBOutlet UILabel *precipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *precipLabel2;
+
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *TempUnitControl;
 
